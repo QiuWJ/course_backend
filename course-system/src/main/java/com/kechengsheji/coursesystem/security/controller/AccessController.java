@@ -21,6 +21,6 @@ public class AccessController {
 
     @RequestMapping("changePwd")
     public String changePassword(){
-        return  null;
+        return  “qiuwej";
     }
 }
