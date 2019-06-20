@@ -9,26 +9,77 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.kechengsheji</groupId>
-    <artifactId>selection</artifactId>
+    <artifactId>course_backend</artifactId>
     <version>1.0</version>
-    <name>selection</name>
-    <description>Demo project for Spring Boot</description>
+    <name>course_backend</name>
+    <description>选课系统</description>
+
+    <modules>
+        <module>course</module>
+        <module>student</module>
+        <module>course-system</module>
+        <module>common</module>
+        <module>manager</module>
+    </modules>
 
     <properties>
         <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <log4jdbc.version>1.16</log4jdbc.version>
+        <druid.version>1.1.10</druid.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <jedis.version>2.9.0</jedis.version>
+        <commons-pool2.version>2.5.0</commons-pool2.version>
+        <fastjson.version>1.2.54</fastjson.version>
     </properties>
 
     <dependencies>
 
+        <!--监控sql日志-->
+        <dependency>
+            <groupId>org.bgee.log4jdbc-log4j2</groupId>
+            <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+            <version>${log4jdbc.version}</version>
+        </dependency>
+
+        <!-- druid数据源驱动 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <!--jwt-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+
+        <!--jedis-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+        <!--集成redis依赖common-pool2-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons-pool2.version}</version>
+        </dependency>
+
+        <!-- fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
         <dependency>
@@ -42,26 +93,12 @@
             <scope>test</scope>
         </dependency>
 
-
-
-
-        <!--添加热部署-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-            <scope>true</scope>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
         </dependency>
 
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

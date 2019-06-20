@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.kechengsheji</groupId>
-    <artifactId>commom</artifactId>
+    <artifactId>common</artifactId>
     <version>1.0</version>
-    <name>commom</name>
+    <name>common</name>
     <description>公共</description>
 
     <properties>
