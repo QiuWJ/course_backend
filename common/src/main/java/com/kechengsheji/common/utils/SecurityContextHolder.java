@@ -1,6 +1,6 @@
 package com.kechengsheji.common.utils;
 
-import com.ycwb.common.exception.BadRequestException;
+import com.kechengsheji.common.exception.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 

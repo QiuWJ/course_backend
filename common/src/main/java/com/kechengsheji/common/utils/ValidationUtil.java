@@ -1,6 +1,7 @@
 package com.kechengsheji.common.utils;
 
-import com.ycwb.common.exception.BadRequestException;
+
+import com.kechengsheji.common.exception.BadRequestException;
 
 import java.util.Optional;
 

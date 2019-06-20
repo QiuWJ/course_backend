@@ -1,9 +1,10 @@
 package com.kechengsheji.common.exception.handler;
 
-import com.ycwb.common.exception.BadRequestException;
-import com.ycwb.common.exception.EntityExistException;
-import com.ycwb.common.exception.EntityNotFoundException;
-import com.ycwb.common.utils.ThrowableUtil;
+
+import com.kechengsheji.common.exception.BadRequestException;
+import com.kechengsheji.common.exception.EntityExistException;
+import com.kechengsheji.common.exception.EntityNotFoundException;
+import com.kechengsheji.common.utils.ThrowableUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
