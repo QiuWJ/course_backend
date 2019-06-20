@@ -1,1 +1,1 @@
-# course_backend
+# 选课系统后端
