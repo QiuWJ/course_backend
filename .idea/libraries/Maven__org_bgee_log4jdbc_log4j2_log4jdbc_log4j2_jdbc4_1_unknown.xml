@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:unknown">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/bgee/log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1/unknown/log4jdbc-log4j2-jdbc4.1-unknown.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/bgee/log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1/unknown/log4jdbc-log4j2-jdbc4.1-unknown-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/bgee/log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1/unknown/log4jdbc-log4j2-jdbc4.1-unknown-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
