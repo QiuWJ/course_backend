@@ -9,7 +9,6 @@ public class AccessController {
 
     @RequestMapping("login")
     public String login(){
-
         return  null;
     }
 
@@ -21,6 +20,6 @@ public class AccessController {
 
     @RequestMapping("changePwd")
     public String changePassword(){
-        return  “qiuwej";
+        return  "qiuwej";
     }
 }
