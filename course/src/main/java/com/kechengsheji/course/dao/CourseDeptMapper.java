@@ -1,6 +1,6 @@
 package com.kechengsheji.course.dao;
 
-import com.kechengsheji.student.model.CourseDept;
+import com.kechengsheji.course.model.CourseDept;
 
 public interface CourseDeptMapper {
     /**
