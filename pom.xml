@@ -36,26 +36,26 @@
 
     <dependencies>
 
-        <!--监控sql日志-->
+     <!--   &lt;!&ndash;监控sql日志&ndash;&gt;
         <dependency>
             <groupId>org.bgee.log4jdbc-log4j2</groupId>
             <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
             <version>${log4jdbc.version}</version>
         </dependency>
 
-        <!-- druid数据源驱动 -->
+        &lt;!&ndash; druid数据源驱动 &ndash;&gt;
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>${druid.version}</version>
         </dependency>
 
-        <!--jwt-->
+        &lt;!&ndash;jwt&ndash;&gt;
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>${jjwt.version}</version>
-        </dependency>
+        </dependency>-->
 
         <!--jedis-->
         <dependency>
