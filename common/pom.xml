@@ -8,12 +8,7 @@
         <version>1.0</version>
     </parent>
 
-    <groupId>com.kechengsheji</groupId>
     <artifactId>common</artifactId>
-    <version>1.0</version>
-    <name>common</name>
-    <description>公共</description>
-    <packaging>jar</packaging>
 
     <dependencies>
         <!-- spring web -->
