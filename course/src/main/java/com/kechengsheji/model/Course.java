@@ -1,5 +1,7 @@
 package com.kechengsheji.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Course {
 
     private Integer id;
@@ -12,6 +14,7 @@ public class Course {
 
     private Integer studentNum;
 
+    @JsonIgnore
     private Integer teacherId;
 
     public Integer getId() {

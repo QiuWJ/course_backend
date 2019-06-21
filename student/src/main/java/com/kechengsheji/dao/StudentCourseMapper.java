@@ -1,7 +1,7 @@
 package com.kechengsheji.dao;
 
-import com.kechengsheji.model.Course;
 import com.kechengsheji.model.StudentCourse;
+import com.kechengsheji.service.dto.StudentCourseDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 
@@ -14,7 +14,7 @@ public interface StudentCourseMapper {
      * @param studentId
      * @return
      */
-    Course findByStudendId(Integer studentId);
+    StudentCourseDTO findByStudendId(Integer studentId);
 
     int deleteByPrimaryKey(Integer id);
 

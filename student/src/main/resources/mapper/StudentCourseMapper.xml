@@ -7,14 +7,14 @@
     <result column="course_id" jdbcType="INTEGER" property="courseId" />
   </resultMap>
 
-  <!--课程结果-->
-  <resultMap id="CourseResultMap" type="com.kechengsheji.model.Course">
+  <!--个人选课结果-->
+  <resultMap id="CourseResultMap" type="com.kechengsheji.service.dto.StudentCourseDTO">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="number" jdbcType="VARCHAR" property="number" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="credit" jdbcType="INTEGER" property="credit" />
     <result column="student_num" jdbcType="INTEGER" property="studentNum" />
-    <result column="teacher_id" jdbcType="INTEGER" property="teacherId" />
+    <result column="t_name" jdbcType="INTEGER" property="teacherName" />
   </resultMap>
 
   <sql id="Base_Column_List">
@@ -23,7 +23,7 @@
 
 
   <sql id="Course_Column_List">
-    c2.id, number, name, credit, student_num, teacher_id
+    c2.id, number, name, credit, student_num, t_name
   </sql>
 
   <!--查询个人选课信息-->
@@ -31,6 +31,7 @@
     select
     <include refid="Course_Column_List" />
     from student_course left join course c2 on student_course.course_id = c2.id
+    left join teacher t on c2.teacher_id = t.id
     where student_id = #{studentId,jdbcType=INTEGER}
   </select>
 
