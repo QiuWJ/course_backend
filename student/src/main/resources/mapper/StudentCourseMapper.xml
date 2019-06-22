@@ -15,6 +15,9 @@
     <result column="credit" jdbcType="INTEGER" property="credit" />
     <result column="student_num" jdbcType="INTEGER" property="studentNum" />
     <result column="t_name" jdbcType="INTEGER" property="teacherName" />
+    <result column="is_checked" jdbcType="INTEGER" property="isChecked" />
+    <result column="checked_num" jdbcType="INTEGER" property="checkedNum" />
+
   </resultMap>
 
   <sql id="Base_Column_List">
@@ -29,10 +32,25 @@
   <!--查询个人选课信息-->
   <select id="findByStudendId" parameterType="java.lang.Integer" resultMap="CourseResultMap">
     select
-    <include refid="Course_Column_List" />
+   <!-- <include refid="Course_Column_List" />
     from student_course left join course c2 on student_course.course_id = c2.id
     left join teacher t on c2.teacher_id = t.id
-    where student_id = #{studentId,jdbcType=INTEGER}
+    where student_id = #{studentId,jdbcType=INTEGER}-->
+    a.*,t_name,(if(b.course_id,1,0)) as is_checked,(ifnull(checked_num,0)) as checked_num
+    from course as a
+    left join
+    (select course_id
+    from student_course
+    where student_id = #{studentId,jdbcType=INTEGER} ) as b
+    on a.id = b.course_id
+
+    left join
+    (select count(course_id) as checked_num,course_id
+    from student_course
+    group by course_id) as c
+    on a.id = c.course_id
+
+    inner join teacher t on a.teacher_id = t.id
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

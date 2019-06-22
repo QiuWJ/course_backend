@@ -1,6 +1,7 @@
 package com.kechengsheji.dao;
 
 import com.kechengsheji.model.Student;
+import com.kechengsheji.service.dto.StudentDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,9 +14,11 @@ public interface StudentMapper {
 
     int insertSelective(Student record);
 
-    Student selectByPrimaryKey(Integer id);
+    StudentDTO selectByPrimaryKey(Integer id);
 
-    Student findByUsernameAndPass(@Param("username") String username, @Param("password")String password);
+    StudentDTO findByUsernameAndPass(@Param("username") String username, @Param("password")String password);
+
+    StudentDTO findByUsername(String username);
 
     int updateByPrimaryKeySelective(Student record);
 
