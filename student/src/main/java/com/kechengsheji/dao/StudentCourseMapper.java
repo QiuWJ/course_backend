@@ -4,6 +4,8 @@ import com.kechengsheji.model.StudentCourse;
 import com.kechengsheji.service.dto.StudentCourseDTO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 
 @Mapper
 public interface StudentCourseMapper {
@@ -14,7 +16,7 @@ public interface StudentCourseMapper {
      * @param studentId
      * @return
      */
-    StudentCourseDTO findByStudendId(Integer studentId);
+    List<StudentCourseDTO> findByStudendId(Integer studentId);
 
     int deleteByPrimaryKey(Integer id);
 
