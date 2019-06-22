@@ -1,4 +1,4 @@
-package com.kechengsheji.service.impl;
+package com.kechengsheji.service.Impl;
 
 import com.kechengsheji.dao.StudentMapper;
 import com.kechengsheji.model.Student;

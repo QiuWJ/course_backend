@@ -26,6 +26,16 @@
     from teacher
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="queryIdByName"  parameterType="String" >
+        select
+        id
+        from teacher
+        where t_name=#{name,jdbcType=VARCHAR}
+
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated

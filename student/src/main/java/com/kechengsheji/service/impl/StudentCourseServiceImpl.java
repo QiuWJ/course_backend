@@ -1,7 +1,6 @@
-package com.kechengsheji.service.impl;
+package com.kechengsheji.service.Impl;
 
 import com.kechengsheji.dao.StudentCourseMapper;
-import com.kechengsheji.model.Course;
 import com.kechengsheji.service.StudentCourseService;
 import com.kechengsheji.service.dto.StudentCourseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,12 @@ public class StudentCourseServiceImpl implements StudentCourseService {
     StudentCourseMapper studentCourseMapper;
 
     @Override
-    public List<StudentCourseDTO> findByStudendId(Integer studentId) {
-        return studentCourseMapper.findByStudendId(studentId);
+    public List<StudentCourseDTO> findByStudendId(Integer studentId,String courseName,String teacherName) {
+        return studentCourseMapper.findByStudendId(studentId,courseName,teacherName);
+    }
+
+    @Override
+    public int deleteBycourseIdAndStudentId(Integer courseId, Integer studentId) {
+        return studentCourseMapper.deleteBycourseIdAndStudentId(courseId,studentId);
     }
 }
