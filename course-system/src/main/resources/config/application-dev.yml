@@ -43,14 +43,13 @@ mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.kechengsheji.model
 
-#jwt
-#jwt:
-#  header: Authorization
-#  secret: mySecret
-#  # token 过期时间 2天
-#  expiration: 172800000
-#  auth:
-#    # 授权路径
-#    path: /login
-#    # 获取用户信息
-#    account: /info
+jwt:
+  header: Authorization
+  secret: mySecret
+  # token 过期时间 2天
+  expiration: 172800000
+  auth:
+    # 授权路径
+    path: /login
+    # 获取用户信息
+    account: /info

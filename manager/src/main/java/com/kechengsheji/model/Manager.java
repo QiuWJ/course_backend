@@ -1,5 +1,7 @@
 package com.kechengsheji.model;
 
+import java.util.Date;
+
 public class Manager {
 
     private Integer id;
@@ -7,6 +9,16 @@ public class Manager {
     private String username;
 
     private String password;
+
+    private Date resetpasswordDate;
+
+    public Date getResetpasswordDate() {
+        return resetpasswordDate;
+    }
+
+    public void setResetpasswordDate(Date resetpasswordDate) {
+        this.resetpasswordDate = resetpasswordDate;
+    }
 
     public Integer getId() {
         return id;
