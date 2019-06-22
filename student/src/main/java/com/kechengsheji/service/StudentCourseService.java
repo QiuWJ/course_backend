@@ -12,5 +12,8 @@ import java.util.List;
  * @date: 2019-06-21
  */
 public interface StudentCourseService {
-    List<StudentCourseDTO> findByStudendId(Integer studentId);
+    List<StudentCourseDTO> findByStudendId(Integer studentId,String courseName,String teacherName);
+
+    int deleteBycourseIdAndStudentId(Integer courseId,Integer studentId);
+
 }

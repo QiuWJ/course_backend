@@ -1,15 +1,15 @@
 package com.kechengsheji.utils;
 
 public class ResultUtil {
-    private int code;
+    private Integer code;
     private String msg;
     private Object data="";
 
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

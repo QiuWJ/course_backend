@@ -19,6 +19,8 @@ public class AuthorizationUser {
     @NotBlank
     private String password;
 
+
+
     @Override
     public String toString() {
         return "{username=" + username  + ", password= ******}";

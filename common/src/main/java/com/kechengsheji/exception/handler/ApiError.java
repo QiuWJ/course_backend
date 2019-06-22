@@ -9,12 +9,12 @@ import lombok.Data;
 @Data
 class ApiError {
 
-    private Integer status;
-    private String message;
+    private Integer code;
+    private String msg;
 
-    public ApiError(Integer status, String message) {
-        this.status = status;
-        this.message = message;
+    public ApiError(Integer code, String msg) {
+        this.code = code;
+        this.msg = msg;
     }
 }
 
