@@ -2,6 +2,8 @@ package com.kechengsheji.service.dto;
 
 import com.kechengsheji.model.Course;
 
+import java.util.List;
+
 /**
  * 学生课程DTO  返回给前端使用
  *
@@ -10,13 +12,24 @@ import com.kechengsheji.model.Course;
  */
 public class StudentCourseDTO extends Course {
     //课程老师
-    String teacherName;
+    private String teacherName;
 
     //已选课程人数
-    Integer checkedNum;
+    private Integer checkedNum;
 
     //该课程是否已选
-    boolean isChecked;
+    private boolean isChecked;
+
+    //学院限制
+    private List<String> deptList;
+
+    public List<String> getDeptList() {
+        return deptList;
+    }
+
+    public void setDeptList(List<String> deptList) {
+        this.deptList = deptList;
+    }
 
     public Integer getCheckedNum() {
         return checkedNum;
