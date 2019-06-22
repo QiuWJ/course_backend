@@ -18,5 +18,5 @@ public interface TeacherMapper {
 
     int updateByPrimaryKey(Teacher record);
 
-    int queryIdByName(String name);
+    Teacher queryByName(String name);
 }

@@ -22,11 +22,10 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="queryIdByName"  parameterType="java.lang.String" >
-        id
-        from teacher
-        where t_name=#{name,jdbcType=VARCHAR}
-
+  <select id="queryByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <include refid="Base_Column_List" />
+    from teacher
+    where t_name= #{name,jdbcType=VARCHAR}
   </select>
 
 

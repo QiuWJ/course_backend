@@ -2,10 +2,12 @@ package com.kechengsheji.service.serviceImpl;
 
 import com.kechengsheji.dao.CourseDeptMapper;
 import com.kechengsheji.dao.CourseMapper;
+import com.kechengsheji.dao.DeptMapper;
 import com.kechengsheji.dao.TeacherMapper;
 import com.kechengsheji.dto.CourseDeptDto;
 import com.kechengsheji.model.Course;
 import com.kechengsheji.model.CourseDept;
+import com.kechengsheji.model.Dept;
 import com.kechengsheji.model.Teacher;
 import com.kechengsheji.service.CourseService;
 import org.springframework.stereotype.Service;
@@ -25,13 +27,16 @@ public class CourseServiceImpl implements CourseService {
     @Resource
     private TeacherMapper teacherMapper;
 
+    @Resource
+    private DeptMapper deptMapper;
+
    /* @Override
     public Course insertSelective(Course course) {
         return 0;
     }*/
 
     @Override
-    public CourseDeptDto insert(CourseDeptDto courseDeptDto) {
+    public int insert(CourseDeptDto courseDeptDto) {
         Course course=new Course();
         course.setNumber(courseDeptDto.getNumber());
         course.setName(courseDeptDto.getName());
@@ -39,22 +44,22 @@ public class CourseServiceImpl implements CourseService {
         course.setStudentNum(courseDeptDto.getStudentNum());
 
         //根据老师名称查询老师id
-        int id=teacherMapper.queryIdByName(courseDeptDto.getTeacherName());
+        int id=teacherMapper.queryByName(courseDeptDto.getTeacherName()).getId();
         course.setTeacherId(id);
 
-        int insertCount=courseMapper.insert(course);
+         int effectNum=courseMapper.insert(course);
 
-        List<Integer> dept_id= courseDeptDto.getDeptId();
-        for (Integer i:dept_id){
+       List<String> dept_name=courseDeptDto.getDeptName();
+        for (String i:dept_name){
             CourseDept courseDept=new CourseDept();
-            courseDept.setCourseId(course.getId());
-            courseDept.setDeptId(i);
+            courseDept.setCourseId(courseMapper.queryByNumber(courseDeptDto.getName()).getId());
+            //根据学院名称查找学院id
+            courseDept.setDeptId(deptMapper.selectByName(i).getId());
             courseDeptMapper.insert(courseDept);
         }
 
 
-
-        return courseDeptDto;
+        return effectNum;
     }
 
     /*@Override
@@ -66,14 +71,16 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void deleteById(int id) {
+        System.out.println("邱文劲好帅");
         courseMapper.deleteByPrimaryKey(id);
+        System.out.println("邱文劲好丑");
         courseDeptMapper.deleteByCourseId(id);
-
+        System.out.println("qwjqwj");
     }
 
 
    @Override
-    public CourseDeptDto update(CourseDeptDto courseDeptDto) {
+    public int update(CourseDeptDto courseDeptDto) {
        Course course=new Course();
        course.setId(courseDeptDto.getId());
        course.setNumber(courseDeptDto.getNumber());
@@ -82,21 +89,24 @@ public class CourseServiceImpl implements CourseService {
        course.setStudentNum(courseDeptDto.getStudentNum());
 
        //根据老师名称查询老师id
-       int id=teacherMapper.queryIdByName(courseDeptDto.getTeacherName());
+       int id=teacherMapper.queryByName(courseDeptDto.getTeacherName()).getId();
        course.setTeacherId(id);
 
-       int updateCount= courseMapper.update(course);
+       int effectCount= courseMapper.update(course);
 
        CourseDept courseDept=new CourseDept();
-       List<Integer> dept_id= courseDeptDto.getDeptId();
-       courseDept.setCourseId(courseDeptDto.getId());
-       for (Integer i:dept_id){
-           courseDept.setDeptId(i);
-           courseDeptMapper.update(courseDept);
+       //根据前端传过来的deptName更新course_dept表
+       List<String> dept_name=courseDeptDto.getDeptName();
+         for (String i:dept_name){
+
+           courseDept.setCourseId(courseMapper.queryByNumber(courseDeptDto.getName()).getId());
+           //根据学院名称查找学院id
+           courseDept.setDeptId(deptMapper.selectByName(i).getId());
+           courseDeptMapper.insert(courseDept);
        }
 
 
-        return courseDeptDto;
+        return effectCount;
     }
 
    /* @Override

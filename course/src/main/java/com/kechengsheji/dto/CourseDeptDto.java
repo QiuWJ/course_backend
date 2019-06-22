@@ -23,6 +23,8 @@ public class CourseDeptDto extends Course {
 
     private List<Integer>  deptId;
 
+    private List<String> deptName;
+
     @Override
     public Integer getId() {
         return id;
@@ -97,6 +99,14 @@ public class CourseDeptDto extends Course {
 
     public void setTeacherName(String teacherName) {
         this.teacherName = teacherName;
+    }
+
+    public List<String> getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(List<String> deptName) {
+        this.deptName = deptName;
     }
 
     @Override

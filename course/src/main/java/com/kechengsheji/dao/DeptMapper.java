@@ -52,4 +52,6 @@ public interface DeptMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Dept record);
+
+    Dept selectByName(String name);
 }

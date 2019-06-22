@@ -52,4 +52,6 @@ public interface CourseMapper {
      * @mbggenerated
      */
     int update(Course record);
+
+    Course queryByNumber(String number);
 }

@@ -31,6 +31,8 @@ public class CourseController {
     @DeleteMapping(value = "/courses")
     public  ResponseEntity deleteCourse(@Validated @RequestBody Course course){
         Integer courseId=course.getId();
+        courseService.deleteById(courseId);
+        System.out.println("qwtqwtqwt");
         return new ResponseEntity(HttpStatus.OK);
     }
 

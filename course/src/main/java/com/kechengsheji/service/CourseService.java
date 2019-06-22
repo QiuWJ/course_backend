@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CourseService {
 
-    public CourseDeptDto insert(CourseDeptDto courseDeptDto);
+    public int insert(CourseDeptDto courseDeptDto);
 
    /* public Course insertSelective(Course course);*/
 
@@ -18,7 +18,7 @@ public interface CourseService {
 
 
 
-    public  CourseDeptDto  update(CourseDeptDto courseDeptDto);
+    public  int  update(CourseDeptDto courseDeptDto);
 
    /* public  CourseDeptDto updateSelective(CourseDeptDto courseDeptDto);*/
 
