@@ -2,6 +2,8 @@ package com.kechengsheji.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.Date;
+
 public class Student {
 
     private Integer id;
@@ -25,8 +27,18 @@ public class Student {
 
     private String className;
 
+    private Date resetPasswordDate;
+
     public Integer getId() {
         return id;
+    }
+
+    public Date getResetPasswordDate() {
+        return resetPasswordDate;
+    }
+
+    public void setResetPasswordDate(Date resetPasswordDate) {
+        this.resetPasswordDate = resetPasswordDate;
     }
 
     public void setId(Integer id) {

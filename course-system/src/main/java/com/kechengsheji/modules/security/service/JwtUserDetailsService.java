@@ -7,19 +7,15 @@ import com.kechengsheji.modules.security.security.JwtUser;
 import com.kechengsheji.service.StudentService;
 import com.kechengsheji.service.dto.StudentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 
 /**
  * @author jie
@@ -31,6 +27,9 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private JwtPermissionService permissionService;
 
     @Override
     public UserDetails loadUserByUsername(String username){
@@ -45,7 +44,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 
 
-    public UserDetails createJwtUser(StudentDTO studentDTO) {
+
+    public JwtUser createJwtUser(StudentDTO studentDTO) {
         return new JwtUser(
                 studentDTO.getId(),
                 studentDTO.getNumber(),
@@ -56,7 +56,9 @@ public class JwtUserDetailsService implements UserDetailsService {
                 studentDTO.getSex(),
                 studentDTO.getDeptName(),
                 studentDTO.getMajor(),
-                studentDTO.getClassName()
+                studentDTO.getClassName(),
+                studentDTO.getResetPasswordDate(),
+                permissionService.mapToGrantedAuthorities("ADMIN")
         );
     }
 }
