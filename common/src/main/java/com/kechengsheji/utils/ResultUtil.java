@@ -5,6 +5,22 @@ public class ResultUtil {
     private String msg;
     private Object data="";
 
+    public ResultUtil(Integer code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public ResultUtil(Integer code, Object data) {
+        this.code = code;
+        this.data = data;
+    }
+
+    public ResultUtil(Integer code, String msg, Object data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
+
     public Integer getCode() {
         return code;
     }

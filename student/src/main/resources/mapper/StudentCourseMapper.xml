@@ -20,6 +20,18 @@
 
   </resultMap>
 
+    <!--管理员查询选课结果-->
+    <resultMap id="ManagerCourseResultMap" type="com.kechengsheji.service.dto.ManagerViewCourseDTO">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="number" jdbcType="VARCHAR" property="number" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="credit" jdbcType="INTEGER" property="credit" />
+        <result column="student_num" jdbcType="INTEGER" property="studentNum" />
+        <result column="t_name" jdbcType="INTEGER" property="teacherName" />
+        <result column="checked_num" jdbcType="INTEGER" property="checkedNum" />
+
+    </resultMap>
+
   <sql id="Base_Column_List">
     id, student_id, course_id
   </sql>
@@ -31,10 +43,7 @@
 
   <!--查询个人选课信息-->
   <select id="findByStudendId" parameterType="java.lang.Integer" resultMap="CourseResultMap">
-   <!-- <include refid="Course_Column_List" />
-    from student_course left join course c2 on student_course.course_id = c2.id
-    left join teacher t on c2.teacher_id = t.id
-    where student_id = #{studentId,jdbcType=INTEGER}-->
+   select
     a.*,t_name,(if(b.course_id,1,0)) as is_checked,(ifnull(checked_num,0)) as checked_num
     from course as a
     inner join teacher t on a.teacher_id = t.id
@@ -60,6 +69,50 @@
     </if>
   </select>
 
+    <!--管理员查询选课信息-->
+    <select id="findcourses" parameterType="java.lang.Integer" resultMap="ManagerCourseResultMap">
+        select
+        a.*,t_name,(ifnull(checked_num,0)) as checked_num
+        from course as a
+        inner join teacher t on a.teacher_id = t.id
+        left join
+        (select count(course_id) as checked_num,course_id
+        from student_course
+        group by course_id) as c
+        on a.id = c.course_id
+        where 1=1
+        <if test="courseName != null">
+            and name=#{courseName}
+        </if>
+        <if test="teacherName != null">
+            and t_name=#{teacherName}
+        </if>
+    </select>
+
+    <!--已选人数和课程人数判断-->
+    <select id="findCourseCheckedNum" parameterType="java.lang.Integer" resultMap="ManagerCourseResultMap">
+        select
+        a.*,t_name,(ifnull(checked_num,0)) as checked_num
+        from course as a
+        inner join teacher t on a.teacher_id = t.id
+        left join
+        (select count(course_id) as checked_num,course_id
+        from student_course
+        group by course_id) as c
+        on a.id = c.course_id
+        where  a.id = #{courseId,jdbcType=INTEGER}
+    </select>
+
+    <!--判断学院限制-->
+    <select id="isCanSelecte" parameterType="java.lang.Integer" resultType="java.lang.Integer" >
+        select  count(*)
+        from student as s
+        left join course_dept as c
+        on  s.dept_id = c.dept_id
+        where s.id = #{studentId,jdbcType=INTEGER}
+        and c.course_id = #{courseId,jdbcType=INTEGER}
+    </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -84,6 +137,14 @@
     values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}
       )
   </insert>
+
+    <insert id="insertStudentCourse" parameterType="java.lang.Integer">
+    insert into student_course ( student_id, course_id
+      )
+    values (#{studentId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}
+      )
+  </insert>
+
   <insert id="insertSelective" parameterType="com.kechengsheji.model.StudentCourse">
     <!--
       WARNING - @mbggenerated

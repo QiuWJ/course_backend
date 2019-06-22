@@ -1,7 +1,9 @@
 package com.kechengsheji.dao;
 
 import com.kechengsheji.model.Teacher;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface TeacherMapper {
 
     int deleteByPrimaryKey(Integer id);

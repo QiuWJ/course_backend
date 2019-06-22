@@ -15,27 +15,26 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value="course")
+@RequestMapping(value="api")
 public class CourseController {
 
     @Resource
     private CourseService courseService;
 
-    @GetMapping(value = "insert")
+    @PostMapping(value = "/courses")
     public ResponseEntity insertCourse(@Validated @RequestBody  CourseDeptDto courseDeptDto){
-        ResultUtil resultUtil=new ResultUtil();
-        resultUtil.setData(courseService.insert(courseDeptDto));
+        ResultUtil resultUtil=new ResultUtil(200,courseService.insert(courseDeptDto));
 
         return  new ResponseEntity(resultUtil, HttpStatus.OK);
     }
 
-    @GetMapping(value = "delete")
+    @DeleteMapping(value = "/courses")
     public  ResponseEntity deleteCourse(@Validated @RequestBody Course course){
         Integer courseId=course.getId();
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping(value = "update")
+    @PutMapping(value = "/courses")
     public  ResponseEntity  updateCourse(@Validated @RequestBody CourseDeptDto courseDeptDto){
             return new ResponseEntity(courseService.update(courseDeptDto),HttpStatus.OK);
     }

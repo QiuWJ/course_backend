@@ -8,11 +8,12 @@ import com.kechengsheji.model.Course;
 import com.kechengsheji.model.CourseDept;
 import com.kechengsheji.model.Teacher;
 import com.kechengsheji.service.CourseService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-
+@Service
 public class CourseServiceImpl implements CourseService {
 
     @Resource

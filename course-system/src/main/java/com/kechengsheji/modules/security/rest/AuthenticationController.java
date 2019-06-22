@@ -6,6 +6,7 @@ import com.kechengsheji.modules.security.security.JwtUser;
 import com.kechengsheji.modules.security.utils.JwtTokenUtil;
 import com.kechengsheji.service.StudentService;
 import com.kechengsheji.utils.EncryptUtil;
+import com.kechengsheji.utils.ResultUtil;
 import com.kechengsheji.utils.SecurityContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,16 +54,16 @@ public class AuthenticationController {
         final JwtUser jwtUser = (JwtUser) userDetailsService.loadUserByUsername(username);
 
         if (!jwtUser.getPassword().equals(EncryptUtil.encryptPassword(authorizationUser.getPassword()))) {
-            throw new AccountExpiredException("密码错误");
+            return ResponseEntity.ok(new ResultUtil(401,"密码错误"));
         }
 
 
         // 生成令牌
         final String token = jwtTokenUtil.generateToken(jwtUser);
         AuthenticationInfo authenticationInfo = new AuthenticationInfo(token, jwtUser);
-
+        ResultUtil result = new ResultUtil(200,authenticationInfo);
         // 返回 token
-        return ResponseEntity.ok(authenticationInfo);
+        return ResponseEntity.ok(result);
     }
 
     /**

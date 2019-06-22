@@ -1,5 +1,6 @@
 package com.kechengsheji.modules.student.controller;
 
+import com.kechengsheji.base.BaseController;
 import com.kechengsheji.model.Student;
 import com.kechengsheji.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@RequestMapping(value = "api")
-public class StudentController {
+public class StudentController extends BaseController {
     @Autowired
     StudentService studentService;
 
@@ -49,14 +49,15 @@ public class StudentController {
     }
 
     /**
-     * 修改学生信息，包括修改密码
+     * 修改用户信息，包括修改密码
      *
      * @param student
      * @return
      */
     @PutMapping(value = "/students")
     public ResponseEntity updateStudent(@Validated @RequestBody Student student){
-        student.setId(1);//当前登录id
+        Integer id = getMemberId();
+        student.setId(id);//当前登录id
         return new ResponseEntity(studentService.updateByPrimaryKeySelective(student),HttpStatus.OK);
     }
 

@@ -1,6 +1,7 @@
 package com.kechengsheji.dao;
 
 import com.kechengsheji.model.StudentCourse;
+import com.kechengsheji.service.dto.ManagerViewCourseDTO;
 import com.kechengsheji.service.dto.StudentCourseDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -19,6 +20,10 @@ public interface StudentCourseMapper {
      */
     List<StudentCourseDTO> findByStudendId(Integer studentId, @Param("courseName") String courseName, @Param("teacherName") String teacherName);
 
+    List<ManagerViewCourseDTO> findcourses( @Param("courseName") String courseName, @Param("teacherName") String teacherName);
+
+    ManagerViewCourseDTO findCourseCheckedNum(Integer courseId);
+
     int deleteByPrimaryKey(Integer id);
 
     int deleteBycourseIdAndStudentId(Integer courseId,Integer studentId);
@@ -26,6 +31,10 @@ public interface StudentCourseMapper {
     int insert(StudentCourse record);
 
     int insertSelective(StudentCourse record);
+
+    int isCanSelecte(Integer studentId,Integer courseId);
+
+    int insertStudentCourse(Integer studentId,Integer courseId);
 
     StudentCourse selectByPrimaryKey(Integer id);
 

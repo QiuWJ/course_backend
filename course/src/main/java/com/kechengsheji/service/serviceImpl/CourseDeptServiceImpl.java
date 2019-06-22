@@ -1,7 +1,9 @@
 package com.kechengsheji.service.serviceImpl;
 
 import com.kechengsheji.model.CourseDept;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CourseDeptServiceImpl {
 
     public int insert(CourseDept courseDept){
